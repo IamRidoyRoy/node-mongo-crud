@@ -33,9 +33,15 @@
  Load Data to client side:
  ------------------------------------
  1. Create get api
- 2. query
- 3. find
+ 2. create a query object
+ 3. collection.find(query)
  4. cursor.toArray()
  5. Return the result
+ 6. From client useState and useEffect and show data from db
+
+ -------------------------------------
+ DElete data from UI and also from DB:
+ -------------------------------------
+ 1. 
 
 */

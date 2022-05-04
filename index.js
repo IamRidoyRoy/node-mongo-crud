@@ -22,7 +22,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const { send } = require('express/lib/response');
 const uri = "mongodb+srv://dbuser1:qWDimG0ngJsC64iR@cluster0.fq0uj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-
+const ObjectId = require('mongodb').ObjectId;
 async function run() {
     try {
         await client.connect();
@@ -46,11 +46,24 @@ async function run() {
             const result = await userCollection.insertOne(newUser);
             res.send(result)
         })
+        // delete a user 
+        app.delete('/user/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) }
+            const result = await userCollection.deleteOne(query);
+            res.send(result)
+        })
+
+
+
+
 
     }
     finally {
         // await client.close();
     }
+
+
 }
 
 run().catch(console.dir);
