@@ -29,6 +29,14 @@ async function run() {
         const user = { name: 'Monisha', email: 'monisha@gmail.com' };
         const result = await userCollection.insertOne(user);
         console.log(`User inserted with id: ${result.insertedId}`);
+
+        // Post data 
+        app.post('/user', (req, res) => {
+            const newUser = req.body;
+            console.log("adding new user", newUser);
+            res.send({ result: "User data received!" })
+        })
+
     }
     finally {
         // await client.close();
